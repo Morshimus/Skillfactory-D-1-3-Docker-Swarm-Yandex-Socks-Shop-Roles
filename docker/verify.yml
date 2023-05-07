@@ -1,0 +1,15 @@
+---
+# This is an example playbook to execute Ansible tests.
+
+- name: Verify
+  hosts: all
+  gather_facts: false
+  roles:
+   - role: tests/test_docker_installed
+  tasks:
+
+  - name: check docker installation result 
+    assert:
+        that:
+           - "{{ output_docker_installed.failed }} == false"    
+
